@@ -133,12 +133,12 @@ document.addEventListener('DOMContentLoaded', () => {
     mathliveInput.setOptions({
         virtualKeyboardMode: "onfocus", // "manual" أو "off" أو "onfocus"
         virtualKeyboards: "all", // يمكنك تحديد لوحات مفاتيح معينة
-        placeholder: "write   here", // النص المؤقت
+        placeholder: "اكتب التكامل هنا...", // النص المؤقت
         mathModeSpace: "\\,", // ضبط المسافة في وضع الرياضيات
         smartFence: true,
         // للمزيد من الخيارات: https://cortexjs.io/mathlive/guides/options/
     });
-    mathliveInput.value = "\\int_{#0}^{#1} {#2} \\,dx"; // قيمة ابتدائية مقترحة
+    mathliveInput.value = "\\int_{a}^{b} f(x) \\,dx"; // قيمة ابتدائية مقترحة
     // mathliveInput.focus(); // للتركيز على الحقل عند تحميل الصفحة (اختياري)
 
     // مستمع لتغييرات الإدخال في MathLive
@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (button && button.dataset.value) {
                 const value = button.dataset.value;
                 if (value === 'clear') {
-                    mathliveInput.value = '\\int_{#0}^{#1} {#2} \\,dx'; // أو قيمة ابتدائية أخرى
+                    mathliveInput.value = '\\int_{a}^{b} f(x) \\,dx'; // أو قيمة ابتدائية أخرى
                     cachedSteps = null;
                     showStepsButton.style.display = 'none';
                 } else if (value === ' ') {
