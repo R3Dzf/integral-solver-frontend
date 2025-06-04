@@ -1,0 +1,41 @@
+[33mcommit c8f3ae4f659380659d97054ff793c4887727d0f2[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Bosha <r3dz2566@gmail.com>
+Date:   Wed Jun 4 13:53:12 2025 +0200
+
+    New
+
+[33mcommit 57afd962e29ec3365bfd7e437e55d53c4e106ca8[m
+Author: Bosha <r3dz2566@gmail.com>
+Date:   Wed Jun 4 13:16:33 2025 +0200
+
+    Move netlify.toml to root directory
+
+[33mcommit 441eb83edca250e20ff8a9d6bc64bbb2137e409e[m
+Author: Bosha <r3dz2566@gmail.com>
+Date:   Wed Jun 4 13:08:40 2025 +0200
+
+    Refactor backend to Netlify Function, remove Express dependency
+
+[33mcommit 0645d2206ff272d403e2b5fd309d31b4af1e588f[m
+Author: Bosha <r3dz2566@gmail.com>
+Date:   Wed Jun 4 12:56:07 2025 +0200
+
+    new
+
+[33mcommit 135d079ff5457edbdbfed86866ae866abe9914f1[m
+Author: Bosha <r3dz2566@gmail.com>
+Date:   Wed Jun 4 12:36:45 2025 +0200
+
+    New
+
+[33mcommit 507f34ac2b6abef4fd95b601772b4f4cbcf14a87[m
+Author: Bosha <r3dz2566@gmail.com>
+Date:   Wed Jun 4 12:04:41 2025 +0200
+
+    No thing
+
+[33mcommit 2b09ed7a5593abcbed11278c2403ebd254744e43[m
+Author: Bosha <r3dz2566@gmail.com>
+Date:   Wed Jun 4 11:47:22 2025 +0200
+
+    Initial commit: Add project files

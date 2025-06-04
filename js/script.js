@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- NEW FUNCTION: Centralized fetch to backend proxy (كما هي) ---
     async function fetchFromBackend(integralExpression, requestType) {
-        const cleanedExpression = integralExpression.replace(/\\text{write here..}/g, '').trim();
+        const cleanedExpression = integralExpression.replace(/\\text{write here}/g, '').trim();
         const backendUrl = '/api/solve-integral';
 
         try {
