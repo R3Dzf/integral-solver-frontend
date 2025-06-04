@@ -1,7 +1,0 @@
-[functions]
-  directory = "netlify/functions" # يخبر Netlify بمكان وجود مجلد الدوال
-
-[[redirects]]
-  from = "/api/*" # أي طلب يبدأ بـ /api/
-  to = "/.netlify/functions/:splat" # وجّهه إلى دوال Netlify
-  status = 200 # أو 301 إذا كان إعادة توجيه دائم، ولكن 200 مناسب للـ proxy

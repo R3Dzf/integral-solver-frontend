@@ -1,0 +1,7 @@
+[functions]
+  directory = "netlify/functions" # يحدد أن مجلد الدوال هو netlify/functions (بالنسبة للجذر)
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
