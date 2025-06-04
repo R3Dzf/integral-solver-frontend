@@ -133,12 +133,12 @@ document.addEventListener('DOMContentLoaded', () => {
     mathliveInput.setOptions({
         virtualKeyboardMode: "onfocus", // "manual" أو "off" أو "onfocus"
         virtualKeyboards: "all", // يمكنك تحديد لوحات مفاتيح معينة
-        placeholder: "اكتب التكامل هنا...", // النص المؤقت
+        placeholder: "writehere", // النص المؤقت
         mathModeSpace: "\\,", // ضبط المسافة في وضع الرياضيات
         smartFence: true,
         // للمزيد من الخيارات: https://cortexjs.io/mathlive/guides/options/
     });
-    mathliveInput.value = "\\int_{a}^{b} f(x) \\,dx"; // قيمة ابتدائية مقترحة
+    mathliveInput.value = "\\int {#0} \\,dx"; // قيمة ابتدائية مقترحة
     // mathliveInput.focus(); // للتركيز على الحقل عند تحميل الصفحة (اختياري)
 
     // مستمع لتغييرات الإدخال في MathLive
@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (button && button.dataset.value) {
                 const value = button.dataset.value;
                 if (value === 'clear') {
-                    mathliveInput.value = '\\int_{a}^{b} f(x) \\,dx'; // أو قيمة ابتدائية أخرى
+                    mathliveInput.value = '\\int {#0} \\,dx'; // أو قيمة ابتدائية أخرى
                     cachedSteps = null;
                     showStepsButton.style.display = 'none';
                 } else if (value === ' ') {
@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- NEW FUNCTION: Centralized fetch to backend proxy (كما هي) ---
     async function fetchFromBackend(integralExpression, requestType) {
-        const cleanedExpression = integralExpression.replace(/\\text{اكتب التكامل هنا...}/g, '').trim();
+        const cleanedExpression = integralExpression.replace(/\\text{write here..}/g, '').trim();
         const backendUrl = '/api/solve-integral';
 
         try {
@@ -279,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
     solveButton.addEventListener('click', async function () {
         const integralExpression = mathliveInput.value.trim(); // الحصول على القيمة من MathLive
 
-        if (integralExpression === '' || integralExpression === '\\int_{a}^{b} f(x) \\,dx' || integralExpression === '\\int_{}^{}  dx') {
+        if (integralExpression === '' || integralExpression === '\\int {#0} \\,dx' || integralExpression === '\\int_{}^{}  dx') {
             resultDisplay.innerHTML = '<p class="text-red-300">الرجاء إدخال تعبير تكاملي صحيح.</p>';
             showStepsButton.style.display = 'none';
             cachedSteps = null;
