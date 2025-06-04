@@ -1,0 +1,24 @@
+{
+  "name": "finalproj---copy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/R3Dzf/integral-solver-frontend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/R3Dzf/integral-solver-frontend/issues"
+  },
+  "homepage": "https://github.com/R3Dzf/integral-solver-frontend#readme",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "node-fetch": "^3.3.2"
+  }
+}
