@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integral Solver - حلال التكاملات</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <script src="https://unpkg.com/mathlive"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body dir="rtl">
+    <canvas id="backgroundCanvas"></canvas>
+    <div class="container p-8 md:p-12 rounded-2xl shadow-2xl max-w-4xl w-11/12 mx-auto my-8">
+        <header class="text-center mb-10 relative">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                Integral Solver
+            </h1>
+            <p class="text-xl md:text-2xl text-blue-200">
+                حلال التكاملات السريع والذكي
+            </p>
+            <button id="themeToggle"
+                class="absolute top-0 left-0 p-2 rounded-full text-white text-2xl focus:outline-none">
+                ☀️
+            </button>
+        </header>
+
+        <main class="space-y-8">
+            <section class="input-section">
+                <label for="mathliveInput" class="block text-lg md:text-xl font-semibold text-blue-100 mb-3">
+                    أدخل التعبير التكاملي هنا:
+                </label>
+                <math-field id="mathliveInput"
+                    class="w-full p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    style="background-color: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: #e2e8f0; min-height: 100px; font-size: 1.2rem; --placeholder-color: #cbd5e1;">
+                </math-field>
+
+                <div class="keyboard-container mt-4 p-4 rounded-lg bg-gray-800 bg-opacity-30">
+                    <div id="categoryNavButtons" class="flex flex-wrap justify-center gap-2 mb-4">
+                    </div>
+
+                    <div class="text-center mb-4">
+                        <span id="categoryName"
+                            class="text-white text-lg font-semibold flex items-center justify-center"></span>
+                    </div>
+
+                    <div id="keyboardPanels">
+                        <div id="panel-calculus-basic" class="keyboard-panel">
+                            <button class="integral-keyboard" data-value="\int_{}^{}">∫</button> <button
+                                class="integral-keyboard" data-value="dx">dx</button>
+                            <button class="integral-keyboard" data-value="\frac{d}{dx}">$\frac{d}{dx}$</button>
+                            <button class="integral-keyboard" data-value="\frac{d^2}{dx^2}">$\frac{d^2}{dx^2}$</button>
+                            <button class="integral-keyboard" data-value="\lim_{x \to }">lim</button>
+                            <button class="integral-keyboard" data-value="\sum_{n=0}^{\infty}">Σ</button>
+                            <button class="integral-keyboard" data-value="\prod_{n=0}^{\infty}">Π</button>
+                            <button class="integral-keyboard" data-value="\frac{}{}">$\frac{a}{b}$</button>
+                            <button class="integral-keyboard" data-value="^">^</button>
+                            <button class="integral-keyboard" data-value="(">(</button>
+                            <button class="integral-keyboard" data-value=")">)</button>
+                            <button class="integral-keyboard" data-value="+">+</button>
+                            <button class="integral-keyboard" data-value="-">-</button>
+                            <button class="integral-keyboard" data-value="*">*</button>
+                            <button class="integral-keyboard" data-value="/">/</button>
+                            <button class="integral-keyboard" data-value="x">x</button>
+                            <button class="integral-keyboard" data-value="y">y</button>
+                            <button class="integral-keyboard" data-value="z">z</button>
+                            <button class="integral-keyboard" data-value="0">0</button>
+                            <button class="integral-keyboard" data-value="1">1</button>
+                            <button class="integral-keyboard" data-value="2">2</button>
+                            <button class="integral-keyboard" data-value="3">3</button>
+                            <button class="integral-keyboard" data-value="4">4</button>
+                            <button class="integral-keyboard" data-value="5">5</button>
+                            <button class="integral-keyboard" data-value="6">6</button>
+                            <button class="integral-keyboard" data-value="7">7</button>
+                            <button class="integral-keyboard" data-value="8">8</button>
+                            <button class="integral-keyboard" data-value="9">9</button>
+                        </div>
+
+                        <div id="panel-constants-inequalities" class="keyboard-panel">
+                            <button class="integral-keyboard" data-value="\pi">π</button>
+                            <button class="integral-keyboard" data-value="e">e</button>
+                            <button class="integral-keyboard" data-value="\infty">∞</button>
+                            <button class="integral-keyboard" data-value="-\infty">-∞</button>
+                            <button class="integral-keyboard" data-value="\abs{}">| |</button> <button
+                                class="integral-keyboard" data-value="=">=</button>
+                            <button class="integral-keyboard" data-value="\neq">≠</button>
+                            <button class="integral-keyboard" data-value=">">></button>
+                            <button class="integral-keyboard" data-value="<">
+                                << /button>
+                                    <button class="integral-keyboard" data-value="\leq">≤</button>
+                                    <button class="integral-keyboard" data-value="\geq">≥</button>
+                                    <button class="integral-keyboard" data-value="\approx">≈</button>
+                                    <button class="integral-keyboard" data-value="\pm">±</button>
+                        </div>
+
+                        <div id="panel-trig" class="keyboard-panel">
+                            <button class="integral-keyboard" data-value="\sin()">sin</button>
+                            <button class="integral-keyboard" data-value="\cos()">cos</button>
+                            <button class="integral-keyboard" data-value="\tan()">tan</button>
+                            <button class="integral-keyboard" data-value="\sec()">sec</button>
+                            <button class="integral-keyboard" data-value="\csc()">csc</button>
+                            <button class="integral-keyboard" data-value="\cot()">cot</button>
+                            <button class="integral-keyboard" data-value="\arcsin()">asin</button>
+                            <button class="integral-keyboard" data-value="\arccos()">acos</button>
+                            <button class="integral-keyboard" data-value="\arctan()">atan</button>
+                        </div>
+
+                        <div id="panel-hyper-log" class="keyboard-panel">
+                            <button class="integral-keyboard" data-value="\sinh()">sinh</button>
+                            <button class="integral-keyboard" data-value="\cosh()">cosh</button>
+                            <button class="integral-keyboard" data-value="\tanh()">tanh</button>
+                            <button class="integral-keyboard" data-value="\sech()">sech</button>
+                            <button class="integral-keyboard" data-value="\csch()">csch</button>
+                            <button class="integral-keyboard" data-value="\coth()">coth</button>
+                            <button class="integral-keyboard" data-value="\log_{10}()">log</button> <button
+                                class="integral-keyboard" data-value="\ln()">ln</button>
+                            <button class="integral-keyboard" data-value="e^{}">e^x</button>
+                        </div>
+
+                        <div id="panel-greek-logic" class="keyboard-panel">
+                            <button class="integral-keyboard" data-value="α">α</button>
+                            <button class="integral-keyboard" data-value="β">β</button>
+                            <button class="integral-keyboard" data-value="γ">γ</button>
+                            <button class="integral-keyboard" data-value="δ">δ</button>
+                            <button class="integral-keyboard" data-value="ε">ε</button>
+                            <button class="integral-keyboard" data-value="ζ">ζ</button>
+                            <button class="integral-keyboard" data-value="η">η</button>
+                            <button class="integral-keyboard" data-value="θ">θ</button>
+                            <button class="integral-keyboard" data-value="λ">λ</button>
+                            <button class="integral-keyboard" data-value="μ">μ</button>
+                            <button class="integral-keyboard" data-value="ν">ν</button>
+                            <button class="integral-keyboard" data-value="ξ">ξ</button>
+                            <button class="integral-keyboard" data-value="ρ">ρ</button>
+                            <button class="integral-keyboard" data-value="σ">σ</button>
+                            <button class="integral-keyboard" data-value="τ">τ</button>
+                            <button class="integral-keyboard" data-value="φ">φ</button>
+                            <button class="integral-keyboard" data-value="χ">χ</button>
+                            <button class="integral-keyboard" data-value="ψ">ψ</button>
+                            <button class="integral-keyboard" data-value="ω">ω</button>
+                            <button class="integral-keyboard" data-value="\Delta">Δ</button>
+                            <button class="integral-keyboard" data-value="\Sigma">Σ</button>
+                            <button class="integral-keyboard" data-value="\Omega">Ω</button>
+                            <button class="integral-keyboard" data-value="\Gamma">Γ</button>
+                            <button class="integral-keyboard" data-value="\Lambda">Λ</button>
+                            <button class="integral-keyboard" data-value="\Phi">Φ</button>
+                            <button class="integral-keyboard" data-value="\Psi">Ψ</button>
+                            <button class="integral-keyboard" data-value="\forall">∀</button>
+                            <button class="integral-keyboard" data-value="\exists">∃</button>
+                            <button class="integral-keyboard" data-value="\cup">∪</button>
+                            <button class="integral-keyboard" data-value="\cap">∩</button>
+                            <button class="integral-keyboard" data-value="\emptyset">∅</button>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center mt-4 space-x-2">
+                        <button class="py-2 px-3 rounded-md text-lg keyboard-nav-button" data-value=" ">مسافة</button>
+                        <button class="py-2 px-3 rounded-md text-lg keyboard-nav-button" data-value="clear">مسح
+                            الكل</button>
+                    </div>
+                </div>
+            </section>
+
+            <section
+                class="solve-button-section text-center flex flex-col items-center space-y-4 md:flex-row md:justify-center md:space-y-0 md:space-x-4">
+                <button id="solveButton"
+                    class="py-3 px-8 rounded-full text-xl font-bold text-white shadow-lg uppercase tracking-wider">
+                    حل التكامل
+                </button>
+                <button id="showStepsButton"
+                    class="py-2 px-6 rounded-full text-lg font-bold text-white shadow-md uppercase tracking-wider bg-purple-600 hover:bg-purple-700 transition duration-200 ease-in-out"
+                    style="display: none;">
+                    عرض خطوات الحل
+                </button>
+            </section>
+
+            <section class="result-section">
+                <h2 class="text-lg md:text-xl font-semibold text-blue-100 mb-3">
+                    النتيجة:
+                </h2>
+                <div id="resultDisplay"
+                    class="result-box w-full p-6 rounded-lg min-h-[100px] flex items-center justify-center text-center text-white text-2xl font-medium">
+                    <p class="text-gray-400">ستظهر النتيجة هنا بعد الحل.</p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-12 text-blue-500 text-sm md:text-base">
+            <p class="mb-2">هذا الموقع لا يزال في مرحلته الأولية (تجريبي) وتحت التطوير المستمر.</p>
+            <p class="mb-2">قد تحدث بعض الأخطاء أو النتائج غير المتوقعة. نعتذر عن أي إزعاج.</p>
+            <p>للتواصل أو الإبلاغ عن الأخطاء، يرجى مراسلتنا عبر البريد الإلكتروني:
+                <a href="mailto:r3dz2566@gmail.com" class="text-blue-400 hover:text-blue-200 underline">MyGmail</a>
+            </p>
+            <p class="mt-4">&copy;Ahmed Youssef 2025 — ALL RIGHTS RESERVED</p>
+        </footer>
+    </div>
+
+    <div id="stepsModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-button" id="closeModalButton">&times;</button>
+            <h3 class="modal-title">خطوات حل التكامل</h3>
+            <div class="modal-body" id="stepsModalBody">
+                <div class="flex flex-col items-center justify-center">
+                    <div class="spinner"></div>
+                    <p class="mt-4 text-yellow-300">جاري تحميل الخطوات...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
